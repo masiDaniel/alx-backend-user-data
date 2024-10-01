@@ -13,11 +13,14 @@ class Auth:
     """
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
+        """this is a function i will document exactly what it does"""
         # if path is None and excluded_paths
         return False
     
     def authorization_header(self, request=None) -> str:
+        """this is a function i will document exactly what it does"""
         return None
     
-    def current_user(self, request=None) -> TypeVar('User'): 
+    def current_user(self, request=None) -> TypeVar('User'):
+        """this is a function i will document exactly what it does"""
         return None
