@@ -1,26 +1,42 @@
 #!/usr/bin/env python3
+"""
+Defines a class Auth
+"""
 
-from typing import (
-    List,
-    TypeVar
-)
 from flask import request
+from typing import List, TypeVar
+
 
 class Auth:
     """
-    class to manage API
-    authentication
+    defines Auth class
     """
+    def require_auth(self, path: str, excluded_paths: List[str]) \
+            -> bool:
+        """
+        Returns False
+        """
+        if path is None:
+            return True
+        if excluded_paths is None or len(excluded_paths) == 0:
+            return True
+        for x in excluded_paths:
+            if path.strip('/') == x.strip('/'):
+                return False
+        return True
 
-    def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
-        """this is a function i will document exactly what it does"""
-        # if path is None and excluded_paths
-        return False
-    
-    def authorization_header(self, request=None) -> str:
-        """this is a function i will document exactly what it does"""
+    def authorization_header(self, request=None) -> TypeVar('User'):
+        """
+        Returns None
+        """
+        if request is None:
+            return None
+        if request.headers.get('Authorization'):
+            return request.headers.get('Authorization')
         return None
-    
+
     def current_user(self, request=None) -> TypeVar('User'):
-        """this is a function i will document exactly what it does"""
+        """
+        Returns None
+        """
         return None
